@@ -2,7 +2,6 @@
 
 int moistureSensorPin = 0;
 int speakerPin = 0;
-int moistureValue;
 
 void setup() {
   uView.begin();
@@ -11,7 +10,7 @@ void setup() {
 }
 
 void loop() {
-  moistureValue = analogRead(moistureSensorPin);
+  int moistureValue = checkMoisture();
   uView.clear(PAGE);
   uView.setCursor(16, 0);
   uView.print(moistureValue);
@@ -20,4 +19,10 @@ void loop() {
     tone(speakerPin, 4699, 250);
   }
   delay(500);
+}
+
+int checkMoisture() {
+  int moistureValue = analogRead(moistureSensorPin);
+  moistureValue = map(moistureValue, 0, 1023, 100, 999);
+  return constrain(moistureValue, 100, 999);
 }
