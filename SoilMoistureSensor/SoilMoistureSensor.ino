@@ -13,11 +13,11 @@ void setup() {
 void loop() {
   moistureValue = analogRead(moistureSensorPin);
   uView.clear(PAGE);
-  uView.setCursor(0, 0);
+  uView.setCursor(16, 0);
   uView.print(moistureValue);
   uView.display();
   if (moistureValue < 500) {
-    tone(speakerPin, 4186, 250);
+    tone(speakerPin, 4699, 250);
   }
   delay(500);
 }
